@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.enumconvert.annotation.BindEnum;
 import com.enumconvert.core.Configuration;
 import com.enumconvert.iface.Convertor;
+import com.enumconvert.util.ConvertUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -27,8 +28,7 @@ public class ObjectConvertor implements Convertor{
         }catch (Exception e) {
             return object;
         }
-        List<Field> fieldList = Arrays.stream(object.getClass().getDeclaredFields())
-                .collect(Collectors.toList());
+        List<Field> fieldList = ConvertUtil.getAllFields(object.getClass());
         List<Field> tmp = new ArrayList<>();
         for (int i = 0; i < fieldList.size(); i++) {
             Field field = fieldList.get(i);
