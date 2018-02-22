@@ -20,6 +20,9 @@ public class ObjectConvertor implements Convertor{
     public Object convert(Object object) throws IllegalAccessException, InvocationTargetException {
         Map<String, Object> ret = null;
         try {
+            if (object.getClass() == String.class) {
+                return object;
+            }
             ret = (Map<String, Object>)JSONObject.toJSON(object);
         }catch (Exception e) {
             return object;
